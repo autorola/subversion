@@ -2,7 +2,7 @@
 
   DAV svn
 
-  SVNPath <%= node['subversion']['repo_dir']/node['subversion']['repo_name'] %>
+  SVNPath <%= node['subversion']['repo_dir'] %>/<%= node['subversion']['repo_name'] %>
 
   AuthType Basic
 
