@@ -34,10 +34,11 @@ web_app "subversion" do
 end
 
 execute "svnadmin create repo" do
-  command "svnadmin create #{node['subversion']['repo_dir']}/#{node['subversion']['repo_name']}"
+  command "svnadmin create #{node['subversion']['repo_dir']}/#{node['subversion']['repo_name']}
+           chown #{node['apache']['user']}:#{node['apache']['user']} #{node['subversion']['repo_dir']}/#{node['subversion']['repo_name']} -R"
   creates "#{node['subversion']['repo_dir']}/#{node['subversion']['repo_name']}"
-  user node['apache']['user']
-  group node['apache']['user']
+  user "root"
+  group "root"
 end
 
 execute "create htpasswd file" do
