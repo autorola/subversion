@@ -1,8 +1,8 @@
-<Location /svn>
+<Location /<%= node['subversion']['server_name'] %>>
 
   DAV svn
 
-  SVNPath /srv/svn/repo
+  SVNPath <%= node['subversion']['repo_dir']/node['subversion']['repo_name'] %>
 
   AuthType Basic
 
