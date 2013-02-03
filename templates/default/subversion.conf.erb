@@ -1,6 +1,6 @@
 <VirtualHost *:443>
-  Servername node['subversion']['server_name']
-  DocumentRoot node['subversion']['docroot']
+  Servername <%= node['subversion']['server_name'] %>
+  DocumentRoot <%= node['subversion']['docroot'] %>
 
   SSLEngine on
   SSLCertificateFile node['subversion']['certficate']
