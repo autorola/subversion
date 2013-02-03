@@ -1,0 +1,6 @@
+#!/bin/sh
+
+USER="$3"
+if [ "$USER" = "<%= node['subversion']['user'] %>" ]; then exit 0; fi
+echo "Only the <%= node['subversion']['user'] %> user may change revision properties" >&2
+exit 1
