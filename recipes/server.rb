@@ -18,6 +18,7 @@
 # limitations under the License.
 #
 include_recipe "apache2::mod_dav_svn"
+include_recipe "apache2::mod_ssl"
 include_recipe "subversion::client"
 
 directory node['subversion']['repo_dir'] do
