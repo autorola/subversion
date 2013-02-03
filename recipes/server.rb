@@ -53,12 +53,14 @@ if node['subversion']['server_mode'] == "slave"
     source "start-commit.erb"
     owner "#{node['apache']['user']}"
     group "#{node['apache']['user']}"
+    mode "0755"
   end
 
   template "#{node['subversion']['repo_dir']}/#{node['subversion']['repo_name']}/hooks/pre-revprop-change" do
     source "pre-revprop-change.erb"
     owner "#{node['apache']['user']}"
     group "#{node['apache']['user']}"
+    mode "0755"
   end
 end
 
