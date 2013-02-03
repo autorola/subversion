@@ -48,6 +48,20 @@ directory "#{node['subversion']['docroot']}" do
   action :create
 end
 
+if node['subversion']['server_mode'] == "slave"
+  template "#{node['subversion']['repo_dir']}/#{node['subversion']['repo_name']}/hooks/start-commit" do
+    source "start-commit.erb"
+    owner "#{node['apache']['user']}"
+    group "#{node['apache']['user']}"
+  end
+
+  template "#{node['subversion']['repo_dir']}/#{node['subversion']['repo_name']}/hooks/pre-revprop-change" do
+    source "pre-revprop-change.erb"
+    owner "#{node['apache']['user']}"
+    group "#{node['apache']['user']}"
+  end
+end
+
 execute "create htpasswd file" do
   command "htpasswd -scb #{node['subversion']['repo_dir']}/htpasswd #{node['subversion']['user']} #{node['subversion']['password']}"
   creates "#{node['subversion']['repo_name']}/htpasswd"
