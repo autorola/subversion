@@ -3,8 +3,8 @@
   DocumentRoot <%= node['subversion']['docroot'] %>
 
   SSLEngine on
-  SSLCertificateFile node['subversion']['certficate']
-  SSLCertificateKeyFile node['subversion']['certificate_key']
+  SSLCertificateFile <%= node['subversion']['certficate'] %>
+  SSLCertificateKeyFile <%= node['subversion']['certificate_key'] %>
 
   <Location /svn>
     DAV svn
