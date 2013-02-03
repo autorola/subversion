@@ -42,7 +42,7 @@ execute "svnadmin create repo" do
 end
 
 directory "#{node['subversion']['docroot']}" do
-  user "#{node['subversion']['repo_dir']}"
+  owner "#{node['subversion']['repo_dir']}"
   group "#{node['subversion']['repo_dir']}"
   action :create
 end
