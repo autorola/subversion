@@ -1,15 +1,17 @@
-<Location /<%= node['subversion']['server_name'] %>>
+<VirtualHost *:443>
+  Servername node['subversion']['server_name']
+  DocumentRoot /var/www/svn
 
-  DAV svn
+  SSLEngine on
+  SSLCertificateFile node['subversion']['certficate']
+  SSLCertificateKeyFile node['subversion']['certificate_key']
 
-  SVNPath <%= node['subversion']['repo_dir'] %>/<%= node['subversion']['repo_name'] %>
-
-  AuthType Basic
-
-  AuthName "Subversion repository"
-
-  AuthUserFile <%= node['subversion']['repo_dir'] %>/htpasswd
-
-  Require valid-user
-
-</Location>
+  <Location /svn>
+    DAV svn
+    SVNPath <%= node['subversion']['repo_dir'] %>/<%= node['subversion']['repo_name'] %>
+    AuthType Basic
+    AuthName "Autorola Subversion repository"
+    AuthUserFile <%= node['subversion']['repo_dir'] %>/htpasswd
+    Require valid-user
+  </Location>
+</VirtualHost>
