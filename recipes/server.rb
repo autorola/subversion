@@ -41,6 +41,12 @@ execute "svnadmin create repo" do
   group "root"
 end
 
+directory "#{node['subversion']['docroot']}" do
+  user "#{node['subversion']['repo_dir']}"
+  group "#{node['subversion']['repo_dir']}"
+  action :create
+end
+
 execute "create htpasswd file" do
   command "htpasswd -scb #{node['subversion']['repo_dir']}/htpasswd #{node['subversion']['user']} #{node['subversion']['password']}"
   creates "#{node['subversion']['repo_name']}/htpasswd"
